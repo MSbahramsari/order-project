@@ -7,9 +7,17 @@ $password = "" ;
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try {
-    $sql = $conn->prepare("SELECT name FROM products  ");
+    $sql = $conn->prepare("SELECT * FROM products  ");
     $sql->execute();
     $products = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+} catch(PDOException $e) {
+    echo "error"  . "<br>" . $e->getMessage();
+}
+try {
+    $stmt = $conn->prepare("SELECT * FROM users  ");
+    $stmt->execute();
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch(PDOException $e) {
     echo "error"  . "<br>" . $e->getMessage();
@@ -38,22 +46,27 @@ try {
         <thead>
         <tr>
             <th>user</th>
-            <th>products</th>
             <th>add product</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>John</td>
-            <td>Doe</td>
+            <td><div><select class="form-select form-select" name="products">
+                        <?php
+                        foreach ($users as $user) {
+                            $user_name = $user['firstname'];
+                            $option = '<option>';
+                            $optionc = '</option>';
+                            echo $option . $user_name .$optionc ;
+                        }?>
+                    </select></td>
             <td><div><select class="form-select form-select" name="products">
                         <?php
                         foreach ($products as $pro) {
-                            foreach ($pro as $value){
-                                $option = '<option>';
-                                $optionc = '</option>';
-                                echo $option . $value .$optionc ;
-                            }
+                            $product = $pro['name'];
+                            $option = '<option>';
+                            $optionc = '</option>';
+                            echo $option . $product .$optionc ;
                         }?>
                     </select>
                 </div></td>
