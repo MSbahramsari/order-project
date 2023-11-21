@@ -1,3 +1,27 @@
+<?php
+extract($_REQUEST , EXTR_PREFIX_SAME , "dup");
+$servername = "localhost";
+$username = "root";
+$dbname = "mekeen";
+$password = "" ;
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $sql = $conn->prepare("SELECT name FROM products  ");
+    $sql->execute();
+    $products = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+} catch(PDOException $e) {
+    echo "error"  . "<br>" . $e->getMessage();
+}
+
+
+
+
+
+
+
+?>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,9 +46,15 @@
         <tr>
             <td>John</td>
             <td>Doe</td>
-            <td><div><select class="form-select form-select" name="gender">
-                        <option>male</option>
-                        <option>female</option>
+            <td><div><select class="form-select form-select" name="products">
+                        <?php
+                        foreach ($products as $pro) {
+                            foreach ($pro as $value){
+                                $option = '<option>';
+                                $optionc = '</option>';
+                                echo $option . $value .$optionc ;
+                            }
+                        }?>
                     </select>
                 </div></td>
             <td><button type="button" class="btn btn-outline-primary">Primary</button>
