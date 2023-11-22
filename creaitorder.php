@@ -65,7 +65,7 @@ try {
                             }?>
                         </select>
                     </div></td>
-                <td><button type="submit" class="btn btn-outline-primary">Primary</button>
+                <td><button type="submit" class="btn btn-outline-primary">add order</button>
                 </td>
             </tr>
 
