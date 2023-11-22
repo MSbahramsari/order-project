@@ -24,11 +24,6 @@ try {
 }
 
 
-
-
-
-
-
 ?>
 <html>
 <head>
@@ -41,41 +36,44 @@ try {
 </head>
 <body>
 <div class="container mt-3">
-    <h2>orders</h2>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>user</th>
-            <th>add product</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><div><select class="form-select form-select" name="products">
-                        <?php
-                        foreach ($users as $user) {
-                            $user_name = $user['firstname'];
-                            $option = '<option>';
-                            $optionc = '</option>';
-                            echo $option . $user_name .$optionc ;
-                        }?>
-                    </select></td>
-            <td><div><select class="form-select form-select" name="products">
-                        <?php
-                        foreach ($products as $pro) {
-                            $product = $pro['name'];
-                            $option = '<option>';
-                            $optionc = '</option>';
-                            echo $option . $product .$optionc ;
-                        }?>
-                    </select>
-                </div></td>
-            <td><button type="button" class="btn btn-outline-primary">Primary</button>
-            </td>
-        </tr>
+    <form action="addorder.php">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>user</th>
+                <th>add product</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><div><select class="form-select form-select" name="name">
+                            <?php
+                            foreach ($users as $user) {
+                                $user_name = $user['firstname'];
+                                $option = '<option>';
+                                $optionc = '</option>';
+                                echo $option . $user_name .$optionc ;
+                            }?>
+                        </select></td>
+                <td><div><select class="form-select form-select" name="productname">
+                            <?php
+                            foreach ($products as $pro) {
+                                $product = $pro['name'];
+                                $option = '<option>';
+                                $optionc = '</option>';
+                                echo $option . $product .$optionc ;
+                            }?>
+                        </select>
+                    </div></td>
+                <td><button type="submit" class="btn btn-outline-primary">Primary</button>
+                </td>
+            </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </form>
+
 </div>
 </body>
 </html>
+
