@@ -12,10 +12,6 @@ try {$sql = $conn->prepare("SELECT users.id , users.firstname ,orders.id , produ
                                 INNER JOIN products ON order_pro.productid = products.id");
     $sql->execute();
     $orders = $sql->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($orders as $order){
-        print_r($order);
-        echo '<br>';
-    }
 
 
 }catch(PDOException $e) {
@@ -25,3 +21,48 @@ try {$sql = $conn->prepare("SELECT users.id , users.firstname ,orders.id , produ
 
 
 
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="container mt-3">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>order</th>
+                <th>user</th>
+                <th>product</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($orders as $order){
+                $orderid = $order['id'];
+                $user = $order['firstname'];
+                $proname = $order['name'];
+                $td = '<td>';
+                $tdc = '</td>';
+                echo '<tr>';
+                echo $td.$orderid.$tdc;
+                echo $td.$user.$tdc;
+                echo $td.$proname.$tdc;
+                echo '</tr>';
+
+
+            }
+
+            ?>
+
+            </tbody>
+        </table>
+
+
+</div>
+</body>
+</html>
