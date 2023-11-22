@@ -36,7 +36,7 @@ try {
 </head>
 <body>
 <div class="container mt-3">
-    <form action="addorder.php">
+    <form action="addorder.php" method="post">
         <table class="table table-striped">
             <thead>
             <tr>
