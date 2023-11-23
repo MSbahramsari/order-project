@@ -46,7 +46,7 @@ try {
             </thead>
             <tbody>
             <tr>
-                <td><div><select class="form-select form-select" name="name">
+                <td><div><select mu class="form-select form-select" name="name">
                             <?php
                             foreach ($users as $user) {
                                 $user_name = $user['firstname'];
@@ -55,11 +55,12 @@ try {
                                 echo $option . $user_name .$optionc ;
                             }?>
                         </select></td>
-                <td><div><select class="form-select form-select" name="productname">
+                <td><div><select multiple class="form-select" name="productname[]" size="5">
                             <?php
                             foreach ($products as $pro) {
                                 $product = $pro['name'];
-                                $option = '<option>';
+                                $id = $pro['id'];
+                                $option = "<option value =' $id'>";
                                 $optionc = '</option>';
                                 echo $option . $product .$optionc ;
                             }?>

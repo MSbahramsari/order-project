@@ -17,18 +17,16 @@ try {
             $stmt->execute();
         }
     }
-    $sql = $conn->prepare("SELECT * FROM products  ");
-    $sql->execute();
-    $allp= $sql->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($allp as $products) {
-        if ($productname == $products['name']){
-            $sql = $conn->prepare("INSERT INTO order_pro (productid) VALUES (?)");
-            $sql->bindParam(1, $products['id']);
-            $sql->execute();
+    $last_id = $conn->lastInsertId();
+            foreach ($productname as $id){
+                $sql = $conn->prepare("INSERT INTO order_pro (orderid , productid) VALUES (? , ?)");
+                $sql->bindParam(1, $last_id);
+                $sql->bindParam(2, $id);
+                $sql->execute();
+                echo $id ;
+                echo '<br>';
+            }
 
-        }
-
-    }
 
 
 } catch(PDOException $e) {
