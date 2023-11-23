@@ -12,7 +12,8 @@ try {$sql = $conn->prepare("SELECT users.id , users.firstname ,orders.id , produ
                                 INNER JOIN products ON order_pro.productid = products.id");
     $sql->execute();
     $orders = $sql->fetchAll(PDO::FETCH_ASSOC);
-    print_r($orders);
+
+
 
 
 }catch(PDOException $e) {
